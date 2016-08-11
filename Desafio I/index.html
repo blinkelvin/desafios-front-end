@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Desafio JS</title>
+	<meta charset="UTF-8">
+	<script src="desafio.js" ></script>
+</head>
+<body>
+	<center>
+		<h1>Desafio JS</h1>
+		<hr>
+		<table cellpadding="3">
+			<tr>
+				<td>
+					<label>Nome da Escola</label>
+				</td>
+				<td>
+					<select id="escola">
+						<option value="">Selecione a escola</option>
+						<option value="CTI">CTI</option>
+						<option value="Interativo">Interativo</option>
+						<option value="Fenix">Fenix</option>
+						<option value="Objetivo">Objetivo</option>
+						<option value="Dincao">D'incao</option>
+						<option value="Paraiso">Paraíso</option>
+						<option value="Anglo">Anglo</option>
+					</select>
+				</td>
+				<td id="CreateEdit" rowspan="2"></td>
+			</tr>
+			<tr>
+				<td>
+					<label>Cidade</label>
+				</td>
+				<td>
+					<input type="text" id="cidade"/>
+				</td>
+			</tr>
+		</table>
+		<hr>
+		<table cellpadding="5">
+			<tr>
+				<td colspan="5">
+					<b>Filtrar por:</b>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label><b>Nome da Escola</b></label>
+				</td>
+				<td>
+					<select id="filterEscola">
+						<option value="">Selecione a escola</option>
+						<option value="CTI">CTI</option>
+						<option value="Interativo">Interativo</option>
+						<option value="Fenix">Fenix</option>
+						<option value="Objetivo">Objetivo</option>
+						<option value="Dincao">D'incao</option>
+						<option value="Paraiso">Paraíso</option>
+						<option value="Anglo">Anglo</option>
+					</select>
+				</td>
+				<td>
+					<input onclick='filter()' type='button' name='create' value='Filtrar'>
+				</td>
+			</tr>
+		</table>
+		<hr>
+		
+		<input onclick='deleteSelected()' type='button' name='create' value='Excluir Selecionados'>
+
+		<br>
+		<br>
+		<table width="500px" cellpadding="3" id="list" border=1>
+		</table>
+	</center>
+</body>
+</html>

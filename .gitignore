@@ -1,0 +1,8 @@
+
+# folders
+node_modules/
+bower_components/
+
+# others files
+*.zip
+*.rar
