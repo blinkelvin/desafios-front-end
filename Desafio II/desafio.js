@@ -141,41 +141,41 @@ var filter = function () {
 
 }
 
-var showlist = function(filter){
+
+var showlist = function(filter, ){
 
 	var show = [];
 
 	if (typeof filter !== "undefined") {
 		show = filter
 	} else {
-		show = escolas
+	show = escolas
 		//Salva o array de objetos em localStorage, convertendo em JSON, pois localStorage armazena somente string
 		localStorage.setItem('dados', JSON.stringify(show));
 	}
 
-	var itens_pag = 5
 	//Cabeçalho
 	var item = "<tr>\
-					<th><input type='checkbox' id='checkall' onclick='selectAll()'/></th>\
-					<th>Escola</th>\
-					<th>Cidade</th>\
-					<th>Editar</th>\
-					<th>Excluir</th>\
-				</tr>";
+		 <th><input type='checkbox' id='checkall' onclick='selectAll()'/></th>\
+		 <th>Escola</th>\
+		 <th>Cidade</th>\
+		 <th>Editar</th>\
+		 <th>Excluir</th>\
+	   </tr>";
 
 	// Lista
-	for (i=0; i<itens_pag; i++){
-		item += "<tr>\
-					<td align='center'><input type='checkbox' id='checkbox" + show[i].id + "' value=" + i + "/></td>\
-					<td>" + show[i].escola + "</td>\
-					<td>" + show[i].cidade + "</td>\
-					<td><input type='button' value='Editar'  onclick='editItem  (" + i + ");'/></td>\
-					<td><input type='button' value='Excluir' onclick='removeItem(" + i + ");'/></td>\
-				 </tr>";
+	for (i=0; i<show.length; i++){
+	item += "<tr>\
+				<td align='center'><input type='checkbox' id='checkbox" + show[i].id + "' value=" + i + "/></td>\
+				<td>" + show[i].escola + "</td>\
+				<td>" + show[i].cidade + "</td>\
+				<td><input type='button' value='Editar'  onclick='editItem  (" + i + ");'/></td>\
+				<td><input type='button' value='Excluir' onclick='removeItem(" + i + ");'/></td>\
+			</tr>";
 	}
 
 	document.getElementById("list").innerHTML = item;
-}
+	}
 
 var selectCidade = function() {
 	// Primeiro item
