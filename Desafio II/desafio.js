@@ -142,7 +142,7 @@ var filter = function () {
 }
 
 
-var showlist = function(filter, ){
+var showlist = function(filter){
 
 	var show = [];
 
