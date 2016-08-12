@@ -1,0 +1,10 @@
+.pagination {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.pagination span {
+    cursor: pointer;
+    font-weight: 700;
+    margin: 0 20px;
+}

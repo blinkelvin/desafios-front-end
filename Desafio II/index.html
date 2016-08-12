@@ -3,6 +3,7 @@
 <head>
 	<title>Desafio JS</title>
 	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script src="jquery-3.1.0.min.js"></script>
 	<script src="desafio.js" ></script>
 	<script src="cidades.js" ></script>
@@ -112,6 +113,12 @@
 				<br>
 				<table width="500px" cellpadding="3" id="list" border=1>
 				</table>
+
+				<div class="pagination">
+					<span class="prev" onclick='page_prev()'><< Voltar</span>
+					<span class="total"></span>
+					<span class="next" onclick='page_next()'>Avançar >></span>
+				</div>
 			</td>
 		</tr>
 		</table>

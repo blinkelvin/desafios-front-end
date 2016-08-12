@@ -1,5 +1,9 @@
 var escolas = [];
 //localStorage.clear();
+var itemsPerPage = 5;
+var currentPage = 0;
+var end = 5;
+var start = 0;
 
 window.onload = function () {
 
@@ -154,28 +158,44 @@ var showlist = function(filter){
 		localStorage.setItem('dados', JSON.stringify(show));
 	}
 
+	var TotalPage = Math.ceil(show.length/itemsPerPage);
 	//Cabeçalho
 	var item = "<tr>\
-		 <th><input type='checkbox' id='checkall' onclick='selectAll()'/></th>\
-		 <th>Escola</th>\
-		 <th>Cidade</th>\
-		 <th>Editar</th>\
-		 <th>Excluir</th>\
+			<th><input type='checkbox' id='checkall' onclick='selectAll()'/></th>\
+			<th>Escola</th>\
+			<th>Cidade</th>\
+			<th>Editar</th>\
+			<th>Excluir</th>\
 	   </tr>";
 
 	// Lista
-	for (i=0; i<show.length; i++){
-	item += "<tr>\
-				<td align='center'><input type='checkbox' id='checkbox" + show[i].id + "' value=" + i + "/></td>\
-				<td>" + show[i].escola + "</td>\
-				<td>" + show[i].cidade + "</td>\
-				<td><input type='button' value='Editar'  onclick='editItem  (" + i + ");'/></td>\
-				<td><input type='button' value='Excluir' onclick='removeItem(" + i + ");'/></td>\
-			</tr>";
+	for (i=start; i<end; i++){
+		if (!show[i]) {
+			document.getElementsByClassName("next")[0].style.display = 'none';
+			break;
+		}
+		else {
+			document.getElementsByClassName("next")[0].style.display = 'inline-block';
+		}
+
+		item += "<tr>\
+					<td align='center'><input type='checkbox' id='checkbox" + show[i].id + "' value=" + i + "/></td>\
+					<td>" + show[i].escola + "</td>\
+					<td>" + show[i].cidade + "</td>\
+					<td><input type='button' value='Editar'  onclick='editItem  (" + i + ");'/></td>\
+					<td><input type='button' value='Excluir' onclick='removeItem(" + i + ");'/></td>\
+				</tr>";
 	}
 
 	document.getElementById("list").innerHTML = item;
-	}
+
+	if (start == 0)
+		document.getElementsByClassName("prev")[0].style.display = 'none';
+	else
+		document.getElementsByClassName("prev")[0].style.display = 'inline-block';
+
+	document.getElementsByClassName("total")[0].innerHTML = (currentPage+1) + "/" + TotalPage;
+}
 
 var selectCidade = function() {
 	// Primeiro item
@@ -187,4 +207,19 @@ var selectCidade = function() {
 	}
 
 	document.getElementById("cidadeSelect").innerHTML = item;
+}
+
+var page_prev = function () {
+	currentPage--;
+	end = (itemsPerPage)*(currentPage+1);
+	start -= itemsPerPage;
+	showlist();
+}
+
+var page_next = function () {
+	currentPage++;
+	end = (itemsPerPage)*(currentPage+1);
+	start += itemsPerPage;
+
+	showlist();
 }
