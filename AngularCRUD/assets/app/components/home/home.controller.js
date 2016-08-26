@@ -7,23 +7,23 @@
 
 angular
     .module('ToDo')
-    .controller('homeController', homeController);
-
-homeController.$inject = ['$scope', '$http', '$utils','$timeout','$window','$Promisses'];
+    .controller('homeController', homeController)
+    .constant('path','assets/app/shared/lista/lista.json');
+homeController.$inject = ['$scope', '$http', '$utils','$timeout','$window','$Promisses', 'path'];
 
   /**
    * @constructor
    * */
-function homeController($scope, $http, $utils, $timeout, $window, $Promisses) {
+function homeController($scope, $http, $utils, $timeout, $window, $Promisses, path) {
 
-
+    console.log(path);
     $scope.getList = function $getList() {
-        $Promisses.request('assets/app/shared/lista/lista.json')
+        $Promisses.request(path)
             .then(function (response) {
                 $scope.data = response.data;
                 $scope.data = $utils.getLS('todo') != null ? $utils.getLS('todo') : $scope.data;
                 $scope.getData = $scope.data;
-                $utils.setLS('todo',$scope.data);                
+                $utils.setLS('todo',$scope.data);
             },
             function (response) {
                 console.error("Erro");
