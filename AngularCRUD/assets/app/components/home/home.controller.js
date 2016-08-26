@@ -9,12 +9,12 @@ angular
     .module('ToDo')
     .controller('homeController', homeController);
 
-homeController.$inject = ['$scope', '$http', '$utils','$timeout','$window','$Promisses'];
+homeController.$inject = ['$scope', '$http', '$utils','$timeout','$window'];
 
   /**
    * @constructor
    * */
-function homeController($scope, $http, $utils, $timeout, $window, $Promisses) {
+function homeController($scope, $http, $utils, $timeout, $window) {
 
     $scope.data = [];
 
