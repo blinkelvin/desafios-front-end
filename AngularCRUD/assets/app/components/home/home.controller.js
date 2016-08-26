@@ -9,14 +9,27 @@ angular
     .module('ToDo')
     .controller('homeController', homeController);
 
-homeController.$inject = ['$scope', '$http', '$utils','$timeout','$window'];
+homeController.$inject = ['$scope', '$http', '$utils','$timeout','$window','$Promisses'];
 
   /**
    * @constructor
    * */
-function homeController($scope, $http, $utils, $timeout, $window) {
+function homeController($scope, $http, $utils, $timeout, $window, $Promisses) {
 
-    $scope.data = [];
+
+    $scope.getList = function $getList() {
+        $Promisses.request('assets/app/shared/lista/lista.json')
+            .then(function (response) {
+                $scope.data = response.data;
+                $scope.data = $utils.getLS('todo') != null ? $utils.getLS('todo') : $scope.data;
+                $scope.getData = $scope.data;
+                $utils.setLS('todo',$scope.data);                
+            },
+            function (response) {
+                console.error("Erro");
+            }
+        );
+    };
 
     $scope.situation =	[
         					{"id":1, "nome": "Finalizada"},
@@ -31,7 +44,6 @@ function homeController($scope, $http, $utils, $timeout, $window) {
     $scope.setData = {};
     $scope.setData.situation = "Finalizada";
 
-    $scope.data = $utils.getLS('todo') != null ? $utils.getLS('todo') : $scope.data;
     $scope.situation = $utils.getLS('sit') != null ? $utils.getLS('sit') : $scope.situation;
 
     $scope.getSituation = $scope.situation;
@@ -58,8 +70,6 @@ function homeController($scope, $http, $utils, $timeout, $window) {
         $scope.setData.situation = "Finalizada";
     };
 
-    // R
-    $scope.getData = $scope.data;
 
     // U
     $scope.edit = function(id) {
@@ -103,7 +113,7 @@ function homeController($scope, $http, $utils, $timeout, $window) {
     //console.log($scope.getStatus("Finalizada"));
     //console.log($scope.getStatus("Pendente"));
 
-    console.log($scope.FinalizadaGetStatus);
+    // console.log($scope.FinalizadaGetStatus);
 
     $scope.showLink = function $showlink($event) {
         $event.preventDefault();
@@ -116,13 +126,9 @@ function homeController($scope, $http, $utils, $timeout, $window) {
 
     function init() {
     //   $scope.homeBO.getMenu();
-
-        $scope.modal =  [
-                            {"id": "redirect"},
-                            {"content": "<a ng-click='showLink($event)' href='#'>https://www.gitkraken.com/</a>"}
-                        ];
+        $scope.getList();
         $timeout(function () {
-            $utils.modal($scope.modal.id);
+            angular.element('#myModal').modal('show');
         }, 3000);
     }
 

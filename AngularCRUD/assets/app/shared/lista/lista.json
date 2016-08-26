@@ -1,14 +1,4 @@
-{
-  "modules": [
-    {
-      "id": 1,
-      "name": "listagem",
-      "url": "list/"
-    },
-    {
-      "id": 2,
-      "name": "relatório",
-      "url": "report/"
-    }
-  ]
-}
+[
+    {"situation":"Pendente","desc":"Primeira","id":"a04198d5-a9ba-4b2d-b66e-b8d9921b94e4"},
+    {"situation":"Finalizada","desc":"Segunda","id":"f114d765-bdb7-47a6-98df-71b1064a9f9a"}
+]

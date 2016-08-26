@@ -41,10 +41,6 @@
             localStorage.setItem(key, JSON.stringify(data));
         }
 
-		utils.modal = function $modal(id) {
-            angular.element('#'+id).modal('show');
-		}
-
 		return utils;
 	};
 	$utils.$inject = ['$http'];

@@ -78,7 +78,7 @@
                 </div>
             </div>
 
-            <div class="panel panel-default">
+            <div class="panel panel-default" ng-show="getData && getData.length>0">
                 <table class="table">
                     <tr>
                         <th>
@@ -110,9 +110,10 @@
                     </tr>
                 </table>
             </div>
+            <div  ng-hide="getData && getData.length>0" class="alert alert-danger" role="alert">Nenhum registro adicionado</div>
 
             <!-- Modal -->
-            <div class="modal fade" id="{{modal.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -120,7 +121,7 @@
                             <h4 class="modal-title" id="myModalLabel">Acesse</h4>
                         </div>
                         <div class="modal-body">
-                            {{modal.content}}
+                            <a ng-click='showLink($event)' href='#'>https://www.gitkraken.com/</a>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -153,6 +154,7 @@
 <script src="assets/app/app.config.js"></script>
 <script src="assets/app/app.routes.js"></script>
 <script src="assets/app/shared/services/utils.js"></script>
+<script src="assets/app/shared/services/promisses.js"></script>
 
 
 <!-- SCRIPT HOME -->
