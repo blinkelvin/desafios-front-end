@@ -1,0 +1,14 @@
+{
+  "modules": [
+    {
+      "id": 1,
+      "name": "listagem",
+      "url": "list/"
+    },
+    {
+      "id": 2,
+      "name": "relatório",
+      "url": "report/"
+    }
+  ]
+}
